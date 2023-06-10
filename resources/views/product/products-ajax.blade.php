@@ -6,9 +6,9 @@
             <div class="card">
 
                 @if(\Helper::check_wishlist($row->id))
-                    <i class="fa fa-heart wishlist_remove" id="wishlist_remove" data-id="{{$row->id}}" style="color:rgb(240, 12, 12)" ></i>
+                  {{--  <i class="fa fa-heart wishlist_remove" id="wishlist_remove" data-id="{{$row->id}}" style="color:rgb(240, 12, 12)" ></i> --}}
                 @else
-                    <i class="fa fa-heart wishlist_add" id="wishlist_add" data-id="{{$row->id}}" style="color:grey" ></i>
+                  {{--  <i class="fa fa-heart wishlist_add" id="wishlist_add" data-id="{{$row->id}}" style="color:grey" ></i> --}}
                 @endif
                 <img class="card-img-top" src="{{ url('images/',$row->prod_img)}}">
 
@@ -16,7 +16,7 @@
                     <h5><b>{{ $row->name}}</b> </h5>
                     <p>{{ $row->description}}</p>
                     <div class="d-flex flex-row my-2">
-                        <div class="text-muted">₹ {{ $row->price }}</div>
+                        <div class="text-muted">KM {{ $row->price }}</div>
                     </div>
                     <div class="d-flex flex-row">
                         <p>Sizes : </p>&nbsp;

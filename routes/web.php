@@ -7,24 +7,15 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PhotoController;
 
-Route::get('/',[HomeController::class, 'home']);
+Route::get('/',[LoginController::class, 'login']);
 
 //login
 Route::any('/login',[LoginController::class, 'login']);
 Route::any('/ajax-login',[LoginController::class, 'ajaxLogin']);
-Route::any('/Wishlogin/{id?}',[LoginController::class, 'Wishlogin']);
+
 Route::any('/logout',[LoginController::class, 'logout']);
 Route::any('/loginAction',[LoginController::class, 'loginAction']);
 
-Route::any('/add_wishlist',[ProductController::class, 'add_wishlist']);
-Route::any('/wishList',[UserController::class, 'wishList']);
-
-
-Route::any('/get-wishlist-items',[UserController::class, 'getwishListItems']);
-Route::any('/check-product-wishlist',[UserController::class, 'checkWishList']);
-
-
-Route::any('/remove_wishlist',[ProductController::class, 'remove_wishlist']);
 
 //add cart
 Route::any('/addToCart',[ProductController::class,'addToCart']);

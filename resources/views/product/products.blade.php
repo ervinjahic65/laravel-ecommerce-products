@@ -64,10 +64,6 @@
                 <span id="burgundy"></span><span id="blue">ADD</span>
             </a>
             &nbsp; | &nbsp;
-            <a class="" href="{{ url('wishList')}}">
-                <span id="burgundy"></span><span id="blue">WHISH LIST</span>
-            </a>
-            &nbsp; | &nbsp;
             <a class="" href="{{ url('/cart-products')}}">
                 <span id="burgundy"></span><span id="blue">CART ( <span id="cart_count"> </span>  )</span>
             </a>
@@ -159,8 +155,8 @@
                 p = price.split(',');
                 var min = p[0];
                 var max = p[1];
-                $('#min_value').text("Rs: "+min);
-                $('#max_value').text("Rs: "+max);
+                $('#min_value').text("KM: "+min);
+                $('#max_value').text("KM: "+max);
                 //end
 
                 var dataString = 'key=' + key + '&colors=' + colors + '&price=' + price;

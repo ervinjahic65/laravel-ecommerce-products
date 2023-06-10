@@ -61,10 +61,6 @@
             <span id="burgundy"></span><span id="blue">Add</span>
         </a>
         &nbsp; | &nbsp;
-        <a class="" href="{{ url('wishList')}}">
-            <span id="burgundy"></span><span id="blue">Whish List</span>
-        </a>
-        &nbsp; | &nbsp;
         <a class="" href="{{ url('logout')}}">
             <span id="burgundy"></span><span id="blue">Logout</span>
         </a>
@@ -157,8 +153,8 @@
             var min = p[0];
             var max = p[1];
 
-            $('#min_value').text("Rs: "+min);
-            $('#max_value').text("Rs: "+max);
+            $('#min_value').text("KM: "+min);
+            $('#max_value').text("KM: "+max);
             //end
 
             var dataString = 'key=' + key + '&colors=' + colors + '&price=' + price;

@@ -17,8 +17,8 @@
             p = price.split(',');
             var min = p[0];
             var max = p[1];
-            $('#min_value').text("Rs: "+min);
-            $('#max_value').text("Rs: "+max);
+            $('#min_value').text("KM: "+min);
+            $('#max_value').text("KM: "+max);
             //end
 
             var dataString = 'key=' + key + '&colors=' + colors + '&price=' + price;

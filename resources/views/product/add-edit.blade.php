@@ -94,10 +94,10 @@ body {
         	<label for=''>Product Name </label><input type="text" class="form-control" name="name" value="{{ isset($product) ? $product->name : old('name')}}" placeholder="Product Name" >
         </div>
         <div class="form-group">
-        	<label for=''>Product Price ₹  </label><input type="text" class="form-control" name="price" value="{{ isset($product) ? $product->price : old('price')}}" placeholder="Product Price" >
+        	<label for=''>Product Price KM  </label><input type="text" class="form-control" name="price" value="{{ isset($product) ? $product->price : old('price')}}" placeholder="Product Price" >
         </div>
         <div class="form-group">
-        	<label for=''>Product Discount Price ₹  </label><input type="text" class="form-control" name="discount_price" value="{{ isset($product) ? $product->discount_price : old('discount_price')}}" placeholder="Discount Price" >
+        	<label for=''>Product Discount Price KM  </label><input type="text" class="form-control" name="discount_price" value="{{ isset($product) ? $product->discount_price : old('discount_price')}}" placeholder="Discount Price" >
         </div>
         <div class="form-group">
         	<label for=''>Product Qunatity </label><input type="text" class="form-control" name="quantity" value="{{ isset($product) ? $product->quantity : old('quantity')}}" placeholder="Product Quntity" >
