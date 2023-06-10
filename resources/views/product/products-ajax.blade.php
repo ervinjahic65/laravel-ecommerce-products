@@ -1,6 +1,6 @@
 
 
-<div class="row" style="margin-left: -100px">
+<div class="row">
     @foreach($products as $row)
 
             <div class="card">

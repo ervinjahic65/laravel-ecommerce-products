@@ -150,9 +150,6 @@ body {
         </div>
 
         <div class="form-group">
-        	<label for='multi_img'>Multiple Images </label><input type="file" class="form-control" name="multi_img[]" id="multi_img" multiple placeholder="Multiple Images" >
-        </div>
-        <div class="form-group">
         	<textarea class="form-control" name="description" placeholder="Description">{{ isset($product) ? $product->description : old('description')}}</textarea>
         </div>
 
