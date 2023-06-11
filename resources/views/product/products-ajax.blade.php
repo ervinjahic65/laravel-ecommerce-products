@@ -1,4 +1,15 @@
+<style>
+    .card {
+        margin-bottom: 200px;
+        margin-left: calc(10%);
+    }
 
+    @media screen and (max-width: 480px) {
+        .row {
+            margin-left: 40px !important;
+        }
+    }
+</style>
 
 <div class="row">
     @foreach($products as $row)

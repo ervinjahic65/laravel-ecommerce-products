@@ -56,22 +56,32 @@
         @if(session('userid'))
 
             <a class="" href="">
-                <span id="burgundy"></span><span id="blue">{{ strtoupper(session('username')) }}</span>
+                <span id="burgundy"></span><span id="blue">
+                    {{ strtoupper(session('username')) }}
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </span>
             </a>
-            &nbsp; | &nbsp;
+            &nbsp;
 
             <a class="" href="{{ url('add-product')}}">
-                <span id="burgundy"></span><span id="blue">ADD</span>
+                <span id="burgundy"></span><span id="blue">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                </span>
             </a>
-            &nbsp; | &nbsp;
+            &nbsp;
             <a class="" href="{{ url('/cart-products')}}">
-                <span id="burgundy"></span><span id="blue">CART ( <span id="cart_count"> </span>  )</span>
+                <span id="burgundy"></span><span id="blue">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    ( <span id="cart_count"> </span>  )
+                </span>
             </a>
-            &nbsp; | &nbsp;
+            &nbsp;
             <a class="" href="{{ url('logout')}}">
-                <span id="burgundy"></span><span id="blue">LOGOUT</span>
+                <span id="burgundy"></span><span id="blue">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                </span>
             </a>
-            &nbsp; | &nbsp;
+            &nbsp;
         @else
             <a class="" href="{{ url('login')}}">
                 <span id="burgundy"></span><span id="blue">LOGIN</span>
