@@ -29,85 +29,77 @@
         #slider5c .slider-selection {
             background: yellow;
         }
+
+        @media screen and (max-width: 780px) {
+            .nav-item {
+                text-align: center;
+            }
+        }
         </style>
-
-
 
 </head>
 <body>
 
 
-    <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
-
+    <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
         <a class="navbar-brand ml-2 font-weight-bold" href="#">
             <span id="burgundy"></span><span id="orange">Products</span>
         </a>
-
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item rounded bg-light search-nav-item">
-                    <input type="text" id="search" class="bg-light searchProd" placeholder="Search Products">
+                    <input type="text" id="search" class="bg-light searchProd form-control" placeholder="Search Products">
                 </li>
-                {{-- <button class="bt btn-primary">Search</button> --}}
-            
                 @if(session('userid'))
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span id="burgundy"></span><span id="blue">
-                            {{ strtoupper(session('username')) }}
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </li>
-
-                
-                &nbsp;
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('add-product')}}">
-                        <span id="burgundy"></span><span id="blue">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </li>
-             
-                &nbsp;
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/cart-products')}}">
-                        <span id="burgundy"></span><span id="blue">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            ( <span id="cart_count"> </span>  )
-                        </span>
-                    </a>
-                </li>
-             
-                &nbsp;
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('logout')}}">
-                        <span id="burgundy"></span><span id="blue">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </li>
-               
-                &nbsp;
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span id="burgundy"></span><span id="blue">
+                                {{ strtoupper(session('username')) }}
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('add-product')}}">
+                            <span id="burgundy"></span><span id="blue">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/cart-products')}}">
+                            <span id="burgundy"></span><span id="blue">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                ( <span id="cart_count"> </span>  )
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('logout')}}">
+                            <span id="burgundy"></span><span id="blue">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
                 @else
-                <a class="" href="{{ url('login')}}">
-                    <span id="burgundy"></span><span id="blue">LOGIN</span>
-                </a>
-                &nbsp; | &nbsp;
-                <a class="" href="{{ url('signup')}}">
-                    <span id="burgundy"></span><span id="blue">REGISTER</span>
-                </a>
-                &nbsp; | &nbsp;
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('login')}}">
+                            <span id="burgundy"></span><span id="blue">LOGIN</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('signup')}}">
+                            <span id="burgundy"></span><span id="blue">REGISTER</span>
+                        </a>
+                    </li>
                 @endif
             </ul>
         </div>
     </nav>
+
 
 
     <section id="sidebar">
