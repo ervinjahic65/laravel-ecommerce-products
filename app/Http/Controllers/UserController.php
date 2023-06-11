@@ -32,13 +32,13 @@ class UserController extends Controller
         }
 
     }
-    public function wishList()
+    /* public function wishList()
     {
         $products = DB::table('wishlist as W')
                     ->join('products as P','P.id','W.product_id')
                     ->select('P.*')->get();
         return view('product.wishlist-ajax',['products'=>$products]);
-    }
+    } */
     public function getwishListItems()
     {
         $products = DB::table('wishlist as W')

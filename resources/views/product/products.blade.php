@@ -34,6 +34,31 @@
             padding-left: 40px;
         }
 
+        @media screen and (max-width: 840px) {
+            .main-section {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #sidebar {
+                margin-left: calc(20%);
+            }
+
+            .max-min-values {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #min_value {
+                padding-left: 40px;
+                padding-right: 20px;
+            }
+
+            .pick-color {
+                margin-left: -20px !important;
+            }
+        }
+
         @media screen and (max-width: 780px) {
             .nav-item {
                 text-align: center;
@@ -104,52 +129,54 @@
         </div>
     </nav>
 
+    <div class="main-container">
+        <section id="sidebar">
 
+            <p> Home | <b>Products</b></p>
 
-    <section id="sidebar">
+            <div class="border-bottom pb-2 ml-2">
+                <h4 id="burgundy">Filters</h4>
+                {{-- <div class="filter">
+                    <a href=""><button class="">Clear</button> </a>
+                </div> --}}
+            </div>
 
-        <p> Home | <b>Products</b></p>
+            <div class="py-2 border-bottom ml-3 max-min-values">
+                <h5 id="burgundy">Price</h5>
+                <b id="min_value">KM: {{ $price['min'] }}</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="{{ $price['min'] }}" data-slider-max="{{ $price['max'] }}" data-slider-step="5" data-slider-value="[{{ $price['min']}},{{ $price['max']}}]"/> <b id="max_value">KM: {{$price['max']}}</b>
+            </div>
 
-        <div class="border-bottom pb-2 ml-2">
-            <h4 id="burgundy">Filters</h4>
-            {{-- <div class="filter">
-                <a href=""><button class="">Clear</button> </a>
-            </div> --}}
-        </div>
+            <div class="py-2 ml-3 pick-color">
+                <h5 id="burgundy">Colors</h5>
+                @foreach($colors as  $r)
+                    <div class="form-group"> <input class="color_check" type="checkbox" value="{{$r->color }}" id="25off"> <label for="25">{{ ucfirst($r->color) }}</label> </div>
+                @endforeach
+            </div>
 
-        <div class="py-2 border-bottom ml-3">
-            <h5 id="burgundy">Price</h5>
-            <b id="min_value">KM: {{ $price['min'] }}</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="{{ $price['min'] }}" data-slider-max="{{ $price['max'] }}" data-slider-step="5" data-slider-value="[{{ $price['min']}},{{ $price['max']}}]"/> <b id="max_value">KM: {{$price['max']}}</b>
-        </div>
+            </section>
 
-        <div class="py-2 ml-3">
-            <h5 id="burgundy">Colors</h5>
-            @foreach($colors as  $r)
-                <div class="form-group"> <input class="color_check" type="checkbox" value="{{$r->color }}" id="25off"> <label for="25">{{ ucfirst($r->color) }}</label> </div>
-            @endforeach
-        </div>
+            @if(session('status'))
+            <strong style="color:green"><center>{{session('status')}}</center></strong>
+            @endif
 
-    </section>
+            <section id="products">
 
-    @if(session('status'))
-    <strong style="color:green"><center>{{session('status')}}</center></strong>
-    @endif
-
-    <section id="products">
-
-        <div class="container">
-            <div class="d-flex flex-row">
-                <div class="ml-auto mr-lg-4">
+            <div class="container">
+                <div class="d-flex flex-row">
+                    <div class="ml-auto mr-lg-4">
+                    </div>
                 </div>
+
+                <div id="ajax_result">
+
+                </div>
+
             </div>
 
-            <div id="ajax_result">
+        </section>
+    </div>
 
-            </div>
-
-        </div>
-
-    </section>
+        
 
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
