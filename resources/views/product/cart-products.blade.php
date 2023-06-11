@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cart-Items</title>
+    <title>Stavke u košarici</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -234,7 +234,7 @@ label {
   }
 
   .product .product-line-price:before {
-    content: 'Item Total: KM.';
+    content: 'Ukupno: KM.';
   }
 
   .totals .totals-item label {
@@ -248,20 +248,20 @@ label {
 </head>
 <body>
 
-<!------ Include the above in your HEAD tag ---------->
+<!------ Uključite gore navedeno u oznaku HEAD ---------->
 <br>
-<a href="{{url('products')}}">Products</a> > <a href="">Cart Items</a>
+<a href="{{url('products')}}">Proizvodi</a> | <a href="">Stavke u košarici</a>
 <br><br>
 
     <div class="shopping-cart">
 
         <div class="column-labels">
-            <label class="product-image">Image</label>
-            <label class="product-details">Product</label>
-            <label class="product-price">Price</label>
-            <label class="product-quantity">Quantity</label>
-            <label class="product-removal">Remove</label>
-            <label class="product-line-price">Total</label>
+            <label class="product-image">Slike</label>
+            <label class="product-details">Proizvodi</label>
+            <label class="product-price">Cijena</label>
+            <label class="product-quantity">Količina</label>
+            <label class="product-removal">Ukloni</label>
+            <label class="product-line-price">Suma</label>
         </div>
 
 
@@ -272,13 +272,15 @@ label {
 
         <div class="totals" style="float:right">
 
-            <label>Grand Total</label>
+            <label>Ukupno</label>
             <div class="totals-value" id="cart-total"></div>
             </div>
         </div>
 
-        <a href="{{url('products')}}" class="btn btn-sm btn-primary">Add More</a> &nbsp;
-        <button class="checkout">Checkout</button>
+        <a href="{{url('products')}}" class="btn btn-sm btn-primary">
+          Dodati još
+        </a> &nbsp;
+        <button style="cursor: pointer" class="checkout">Naruči</button>
 
 
     </div>
@@ -288,18 +290,18 @@ label {
 
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title">Success</h4>
+              <h4 class="modal-title">Uspješno</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                Order Placed!
+                Narudžba spremna
             </div>
 
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Zatvori</button>
             </div>
 
           </div>
@@ -321,7 +323,7 @@ $(document).ready(function() {
         });
     }
     $('.checkout').click(function(){
-        alert('Order Successfully placed!')
+        alert('Narudžba spremljena!')
         window.history.back();
     });
 

@@ -80,7 +80,7 @@ class ProductController extends Controller
         }
 
     }
-    public function add_wishlist(Request $request){
+    /* public function add_wishlist(Request $request){
 
         $prod['product_id'] = $request['product_id'];
         $prod['user_id'] = session('userid');
@@ -96,8 +96,8 @@ class ProductController extends Controller
             return $data; exit();
         }
 
-    }
-    public function remove_wishlist(Request $request){
+    } */
+    /* public function remove_wishlist(Request $request){
 
         $prodid = $request['product_id'];
         $userid = session('userid');
@@ -112,7 +112,7 @@ class ProductController extends Controller
             return $data; exit();
         }
 
-    }
+    } */
      public function products(){
 
         $colors = DB::table('colors')->select('color')->distinct()->get();
@@ -234,7 +234,7 @@ class ProductController extends Controller
 
         if(isset($insertResult)){
 
-            return redirect('products')->with('status','Product Updated Successfully!');;
+            return redirect('products')->with('status','Proizvod je uspješno ažuriran!');
 
         } else {
             return redirect()->back();
@@ -267,8 +267,6 @@ class ProductController extends Controller
         if (is_iterable($products)) {
             return view('product.products-ajax', ['products' => $products]);
         } else {
-            // Handle the case when $products is not iterable
-            // For example, return an error response or an empty view
             return response('No products found.', 404);
         }
     }

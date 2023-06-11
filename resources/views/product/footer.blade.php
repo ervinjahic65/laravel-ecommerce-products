@@ -32,7 +32,7 @@
 
                         $("#ajax_result").html(data);
                     } else {
-                        $("#ajax_result").html("<p>No data Avaliable</p>");
+                        $("#ajax_result").html("<p>Nema podataka</p>");
                     }
                 }
             });
@@ -69,12 +69,12 @@
             var size = $('input[name="size"]:checked').val();
             if(!size)
             {
-                alert("Plese select size");
+                alert("Molimo izaberite veličinu");
                 return false;
             }
             if(!color)
             {
-                alert("Plese select color");
+                alert("Molimo izaberite boju");
                 return false;
             }
             var dataString = 'product_id=' + product_id + '&color=' + color + '&size=' + size;
@@ -88,8 +88,8 @@
                     $("#myModal").modal("toggle");
                     cart_count();
                 } else {
-                    alert("Failed! Try Again.");
-                     cart_count();
+                    alert("Greška! Pokušajte ponovo.");
+                    cart_count();
                 }
             }
         });
@@ -108,10 +108,10 @@
                 success:function(data){
 
                     if(data == "success"){
-                        alert("Successfully Added!");
+                        alert("Uspješno dodano");
                         ajax_call();
                     } else {
-                        alert("Failed!");
+                        alert("Greška!");
                         ajax_call();
                     }
                 }
@@ -132,10 +132,10 @@
                 success:function(data){
 
                     if(data == "success"){
-                        alert("Successfully Removed!");
+                        alert("Uspješno izbrisano!");
                         location.reload();
                     } else {
-                        alert("Failed!");
+                        alert("Greška!");
                         location.reload();
                     }
                 }

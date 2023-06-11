@@ -17,7 +17,7 @@ class UserController extends Controller
     //     $this->middleware('check');
     // }
 
-    public function checkWishList(Request $request){
+    /* public function checkWishList(Request $request){
 
         $id = $request->id;
         $userid = session('userid');
@@ -31,7 +31,7 @@ class UserController extends Controller
             return $res;
         }
 
-    }
+    } */
     /* public function wishList()
     {
         $products = DB::table('wishlist as W')
@@ -39,13 +39,13 @@ class UserController extends Controller
                     ->select('P.*')->get();
         return view('product.wishlist-ajax',['products'=>$products]);
     } */
-    public function getwishListItems()
+    /* public function getwishListItems()
     {
         $products = DB::table('wishlist as W')
                     ->join('products as P','P.id','W.product_id')
                     ->select('P.*')->get();
         return view('product.wishlist-products',['products'=>$products]);
-    }
+    } */
     public function index()
     {
         $users = UserModel::getUsers();
@@ -85,9 +85,9 @@ class UserController extends Controller
         $insertResult = DB::table('users')->insert($data);
 
         if($insertResult){
-            return redirect('/login')->with('status', 'User created!');
+            return redirect('/login')->with('status', 'Korisnik kreiran!');
         } else{
-            return redirect('signup')->with('status', 'Failed! try again');;
+            return redirect('signup')->with('status', 'Greška, pokušajte ponovo');;
         }
     }
 
@@ -149,9 +149,9 @@ class UserController extends Controller
         $update = UserModel::updateUser($id,$input);
 
         if(isset($update)){
-            return redirect('users')->with('status', 'User Updated!');
+            return redirect('users')->with('status', 'Korisnik ažuriran!');
         } else{
-            return redirect('/edit',$id)->with('status', 'Failed! try again');;
+            return redirect('/edit',$id)->with('status', 'Greška, pokušajte ponovo');;
             //return "failed";
         }
 
@@ -167,9 +167,9 @@ class UserController extends Controller
     {
         $result = UserModel::deleteUser($id);
         if($result){
-            return redirect('users')->with('status', 'User Updated!');
+            return redirect('users')->with('status', 'Korisnik ažuriran!');
         } else{
-            return view('edit',$id)->with('status', 'Failed! try again');;
+            return view('edit',$id)->with('status', 'Greška, pokušajte ponovo');;
         }
     }
 }
