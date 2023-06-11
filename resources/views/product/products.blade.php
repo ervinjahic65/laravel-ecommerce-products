@@ -30,6 +30,10 @@
             background: yellow;
         }
 
+        #min_value, #max_value {
+            padding-left: 40px;
+        }
+
         @media screen and (max-width: 780px) {
             .nav-item {
                 text-align: center;
@@ -115,7 +119,7 @@
 
         <div class="py-2 border-bottom ml-3">
             <h5 id="burgundy">Price</h5>
-            <b id="min_value">Rs. {{ $price['min'] }}</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="{{ $price['min'] }}" data-slider-max="{{ $price['max'] }}" data-slider-step="5" data-slider-value="[{{ $price['min']}},{{ $price['max']}}]"/> <b id="max_value">Rs. {{$price['max']}}</b>
+            <b id="min_value">KM: {{ $price['min'] }}</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="{{ $price['min'] }}" data-slider-max="{{ $price['max'] }}" data-slider-step="5" data-slider-value="[{{ $price['min']}},{{ $price['max']}}]"/> <b id="max_value">KM: {{$price['max']}}</b>
         </div>
 
         <div class="py-2 ml-3">

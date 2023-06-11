@@ -7,7 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PhotoController;
 
-Route::get('/',[LoginController::class, 'login']);
+Route::get('/',[ProductController::class, 'products']);
 
 //login
 Route::any('/login',[LoginController::class, 'login']);
