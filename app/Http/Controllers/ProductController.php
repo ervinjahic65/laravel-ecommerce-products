@@ -80,39 +80,7 @@ class ProductController extends Controller
         }
 
     }
-    /* public function add_wishlist(Request $request){
-
-        $prod['product_id'] = $request['product_id'];
-        $prod['user_id'] = session('userid');
-
-        //$check = DB::table('wishlist')->where('user_id', $pro);
-        $result = DB::table('wishlist')->insert($prod);
-
-        if(isset($result)){
-            $data = "success";
-            return $data; exit();
-        } else {
-            $data = "failed";
-            return $data; exit();
-        }
-
-    } */
-    /* public function remove_wishlist(Request $request){
-
-        $prodid = $request['product_id'];
-        $userid = session('userid');
-
-        $result = DB::table('wishlist')->where('user_id',$userid)->where('product_id',$prodid)->delete();
-
-        if(isset($result)){
-            $data = "success";
-            return $data; exit();
-        } else {
-            $data = "failed";
-            return $data; exit();
-        }
-
-    } */
+    
      public function products(){
 
         $colors = DB::table('colors')->select('color')->distinct()->get();

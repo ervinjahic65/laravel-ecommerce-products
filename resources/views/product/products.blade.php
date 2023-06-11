@@ -19,6 +19,11 @@
 
     <style>
 
+        .hero-img-main {
+            width: 35%;
+            height: auto;
+        }
+
         .hero-img {
             width: 50px;
         }
@@ -73,7 +78,6 @@
 </head>
 <body>
 
-
     <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
         <a class="navbar-brand ml-2 font-weight-bold" href="#">
             <img class="hero-img" src="{{ url('images/mobile-shop.jpg') }}"/>
@@ -83,9 +87,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
+                @if(session('userid'))
                 <li class="nav-item rounded bg-light search-nav-item">
                     <input type="text" id="search" class="bg-light searchProd form-control" placeholder="Pretraži proizvode ...">
                 </li>
+                @endif
                 @if(session('userid'))
                     <li class="nav-item">
                         <a class="nav-link" href="#">
@@ -137,6 +143,13 @@
         </div>
     </nav>
 
+    @if(!session('userid'))
+    <div class="before-login" style="text-align: center;">
+        <img class="hero-img-main" src="{{ url('images/mobile-shop.jpg') }}"/>
+    </div>
+    @endif
+
+    @if(session('userid'))
     <div class="main-container">
         <section id="sidebar">
 
@@ -185,7 +198,7 @@
 
         </section>
     </div>
-
+    @endif
         
 
 
