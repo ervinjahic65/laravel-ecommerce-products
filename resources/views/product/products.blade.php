@@ -91,13 +91,15 @@
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('add-product')}}">
-                            <span id="burgundy"></span><span id="blue">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </span>
-                        </a>
-                    </li>
+                    @if(session('username') == 'Admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('add-product')}}">
+                                <span id="burgundy"></span><span id="blue">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/cart-products')}}">
                             <span id="burgundy"></span><span id="blue">

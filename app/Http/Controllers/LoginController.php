@@ -31,7 +31,7 @@ class LoginController extends Controller
         $mail = $request['username'];
         $password = $request['password'];
 
-        $user = DB::table('customers')
+        $user = DB::table('users')
                 ->where('email',$mail)
                 ->orWhere('name',$mail)
                 ->first();
@@ -68,7 +68,7 @@ class LoginController extends Controller
     public function ajaxLogin(Request $request){
         $mail = $request['email'];
         $password = $request['password'];
-        $user = DB::table('customers')
+        $user = DB::table('users')
                 ->where('email',$mail)
                 ->orWhere('name',$mail)
                 ->first();

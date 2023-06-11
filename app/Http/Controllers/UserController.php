@@ -74,7 +74,7 @@ class UserController extends Controller
     {
         $this->validate($request,[
             'name' => 'required',
-            'email' => 'required|email|unique:customers',
+            'email' => 'required|email|unique:users',
             'password'=> 'required',
             'confirm_password' => 'required|same:password',
 
@@ -82,7 +82,7 @@ class UserController extends Controller
         $data = $request->except('_token','confirm_password');
         $data['password'] = \Hash::make($request->password);
 
-        $insertResult = DB::table('customers')->insert($data);
+        $insertResult = DB::table('users')->insert($data);
 
         if($insertResult){
             return redirect('/login')->with('status', 'User created!');
