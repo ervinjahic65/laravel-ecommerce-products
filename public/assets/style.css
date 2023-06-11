@@ -42,10 +42,15 @@
     outline: none;
     border: none;
     display: inline-block;
+    background-color: rgb(218, 231, 226) !important;
 }
 
 #burgundy {
     color: rgb(153, 40, 59)
+}
+
+.nav-link {
+    color: #007bff !important;
 }
 
 /* #orange,

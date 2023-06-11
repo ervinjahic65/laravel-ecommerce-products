@@ -43,54 +43,70 @@
             <span id="burgundy"></span><span id="orange">Products</span>
         </a>
 
-        <div class="collapse navbar-collapse" id="navbarColor">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item rounded bg-light search-nav-item">
                     <input type="text" id="search" class="bg-light searchProd" placeholder="Search Products">
                 </li>
                 {{-- <button class="bt btn-primary">Search</button> --}}
+            
+                @if(session('userid'))
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span id="burgundy"></span><span id="blue">
+                            {{ strtoupper(session('username')) }}
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </li>
+
+                
+                &nbsp;
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('add-product')}}">
+                        <span id="burgundy"></span><span id="blue">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </li>
+             
+                &nbsp;
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/cart-products')}}">
+                        <span id="burgundy"></span><span id="blue">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            ( <span id="cart_count"> </span>  )
+                        </span>
+                    </a>
+                </li>
+             
+                &nbsp;
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('logout')}}">
+                        <span id="burgundy"></span><span id="blue">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </li>
+               
+                &nbsp;
+
+                @else
+                <a class="" href="{{ url('login')}}">
+                    <span id="burgundy"></span><span id="blue">LOGIN</span>
+                </a>
+                &nbsp; | &nbsp;
+                <a class="" href="{{ url('signup')}}">
+                    <span id="burgundy"></span><span id="blue">REGISTER</span>
+                </a>
+                &nbsp; | &nbsp;
+                @endif
             </ul>
-            @if(session('userid'))
-
-            <a class="" href="">
-                <span id="burgundy"></span><span id="blue">
-                    {{ strtoupper(session('username')) }}
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                </span>
-            </a>
-            &nbsp;
-
-            <a class="" href="{{ url('add-product')}}">
-                <span id="burgundy"></span><span id="blue">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                </span>
-            </a>
-            &nbsp;
-            <a class="" href="{{ url('/cart-products')}}">
-                <span id="burgundy"></span><span id="blue">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    ( <span id="cart_count"> </span>  )
-                </span>
-            </a>
-            &nbsp;
-            <a class="" href="{{ url('logout')}}">
-                <span id="burgundy"></span><span id="blue">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                </span>
-            </a>
-            &nbsp;
-            @else
-            <a class="" href="{{ url('login')}}">
-                <span id="burgundy"></span><span id="blue">LOGIN</span>
-            </a>
-            &nbsp; | &nbsp;
-            <a class="" href="{{ url('signup')}}">
-                <span id="burgundy"></span><span id="blue">REGISTER</span>
-            </a>
-            &nbsp; | &nbsp;
-            @endif
         </div>
-
     </nav>
 
 
