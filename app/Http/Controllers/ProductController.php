@@ -80,39 +80,7 @@ class ProductController extends Controller
         }
 
     }
-    public function add_wishlist(Request $request){
-
-        $prod['product_id'] = $request['product_id'];
-        $prod['user_id'] = session('userid');
-
-        //$check = DB::table('wishlist')->where('user_id', $pro);
-        $result = DB::table('wishlist')->insert($prod);
-
-        if(isset($result)){
-            $data = "success";
-            return $data; exit();
-        } else {
-            $data = "failed";
-            return $data; exit();
-        }
-
-    }
-    public function remove_wishlist(Request $request){
-
-        $prodid = $request['product_id'];
-        $userid = session('userid');
-
-        $result = DB::table('wishlist')->where('user_id',$userid)->where('product_id',$prodid)->delete();
-
-        if(isset($result)){
-            $data = "success";
-            return $data; exit();
-        } else {
-            $data = "failed";
-            return $data; exit();
-        }
-
-    }
+    
      public function products(){
 
         $colors = DB::table('colors')->select('color')->distinct()->get();
@@ -145,15 +113,15 @@ class ProductController extends Controller
         $product = DB::table('products')->where('id',$id)->first();
         return view('product.add-edit')->with('product',$product);
     }
-    public function storeProduct(Request $request){
-
-        $this->validate($request,[
-            'name'=>'required',
-            'price'=>'required',
-            'discount_price'=>'required',
-            'quantity'=>'required',
-            'description'=>'required',
-            'prod_img' => 'required|image'
+    public function storeProduct(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'discount_price' => 'required',
+            'quantity' => 'required',
+            'description' => 'required',
+            'prod_img' => 'required|image',
         ]);
 
         $inputs = [
@@ -162,46 +130,43 @@ class ProductController extends Controller
             'quantity' => $request->quantity,
             'discount_price' => $request->discount_price,
             'description' => $request->description,
-            // 'colors' => implode(',',$request->color),
-            'sizes' => implode(',',$request->sizes)
+            'sizes' => implode(',', $request->sizes),
         ];
 
-        if($request->hasFile('prod_img')) {
-
+        if ($request->hasFile('prod_img')) {
             $imgName = $request->file('prod_img');
-            $fileName = time().'.'.$imgName->getClientOriginalExtension();
+            $fileName = time() . '.' . $imgName->getClientOriginalExtension();
             $imgName->move(public_path('images/'), $fileName);
             $inputs['prod_img'] = $fileName;
-
         }
-
 
         $insertResult = Product::insertProduct($inputs);
 
-        if(isset($insertResult)){
-
-            foreach($request->file('multi_img') as $file)
-            {
-                $name = time().rand(1,100).'.'.$file->extension();
-                $file->move(public_path('IMAGES/'), $name);
-                $img['prod_image'] = $name;
-                $img['product_id'] = $insertResult;
-                \DB::table('product_images')->insert($img);
-            }
-            foreach($request->color as $c)
-            {
-                $color['color'] = $c;
-                $color['product_id'] = $insertResult;
-                \DB::table('colors')->insert($color);
+        if (isset($insertResult)) {
+            if ($request->hasFile('multi_img')) {
+                foreach ($request->file('multi_img') as $file) {
+                    $name = time() . rand(1, 100) . '.' . $file->extension();
+                    $file->move(public_path('IMAGES/'), $name);
+                    $img['prod_image'] = $name;
+                    $img['product_id'] = $insertResult;
+                    \DB::table('product_images')->insert($img);
+                }
             }
 
-            return redirect('products')->with('status','Product added successfully!');
+            if (is_array($request->color)) {
+                foreach ($request->color as $c) {
+                    $color['color'] = $c;
+                    $color['product_id'] = $insertResult;
+                    \DB::table('colors')->insert($color);
+                }
+            }
 
+            return redirect('products')->with('status', 'Product added successfully!');
         } else {
             return redirect()->back();
         }
-
     }
+
     public function updateProduct(Request $request,$id){
 
         $this->validate($request,[
@@ -237,39 +202,44 @@ class ProductController extends Controller
 
         if(isset($insertResult)){
 
-            return redirect('products')->with('status','Product Updated Successfully!');;
+            return redirect('products')->with('status','Proizvod je uspješno ažuriran!');
 
         } else {
             return redirect()->back();
         }
 
     }
-    public function productsAjax(Request $request){
-
+    public function productsAjax(Request $request)
+    {
         $key = $request->key;
         $color = $request->colors;
         $price = $request->price;
 
         $query = DB::table('products');
-        if(isset($color)){
-            $query->leftJoin('colors', 'products.id','=','colors.product_id')
-            ->select('products.*')
-            ->whereIn('colors.color', (explode(',',$color)))
-            ->distinct();
+        if (isset($color)) {
+            $query->leftJoin('colors', 'products.id', '=', 'colors.product_id')
+                ->select('products.*')
+                ->whereIn('colors.color', explode(',', $color))
+                ->distinct();
         }
-        if(isset($key)){
-           $query->where('name','like','%'.$key.'%');
+        if (isset($key)) {
+            $query->where('name', 'like', '%' . $key . '%');
         }
 
-        if(isset($price)){
-            $query->whereBetween('price', [explode(',',$price)]);
+        if (isset($price)) {
+            $query->whereBetween('price', explode(',', $price));
         }
 
         $products = $query->get();
 
-        //return response()->json($products);
-
-        return view('product.products-ajax',['products'=>$products]); exit();
+        if (is_iterable($products)) {
+            return view('product.products-ajax', ['products' => $products]);
+        } else {
+            return response('No products found.', 404);
+        }
     }
 
+
 }
+
+?>

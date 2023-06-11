@@ -32,11 +32,11 @@ class PhotoController extends Controller
                 }
            }
             DB::table('photos')->insert($insert);
-            return response()->json(['success'=>'Successfully Uploaded!']);
+            return response()->json(['success'=>'Uspješno dodano!']);
         }
         else
         {
-           return response()->json(["message" => "Please try again."]);
+           return response()->json(["message" => "Molimo pokušajte ponovo."]);
         }
     }
 }

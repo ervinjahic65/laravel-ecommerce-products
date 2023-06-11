@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-<title>add-edit</title>
+<title>Dodajte korisnike</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -89,19 +89,19 @@ body {
         @csrf
         @if(isset($user))
 
-            <h4 class="text-center">Edit user</h4>
+            <h4 class="text-center">Uredi korisnika</h4>
         @else
-            <h4 class="text-center">Add user</h4>
+            <h4 class="text-center">Dodaj korisnika</h4>
         @endif
 		<hr>
         <div class="form-group">
-        	<input type="text" class="form-control" name="name" value="{{ isset($user)?$user->name:old('name') }}" placeholder="User Name" >
+        	<input type="text" class="form-control" name="name" value="{{ isset($user)?$user->name:old('name') }}" placeholder="Ime" >
             @if($errors->has('name'))
                 <p style="color:red">{{ $errors->first('name')}}</p>
             @endif
         </div>
         <div class="form-group">
-        	<input type="email" class="form-control" autocomplete="off" name="email" value="{{ isset($user)?$user->email:old('email')}}" placeholder="Email Address" @if(isset($user)) {{ "disabled" }} @endif >
+        	<input type="email" class="form-control" autocomplete="off" name="email" value="{{ isset($user)?$user->email:old('email')}}" placeholder="Email" @if(isset($user)) {{ "disabled" }} @endif >
             @if($errors->has('email'))
                 <p style="color:red">{{ $errors->first('email')}}</p>
             @endif
@@ -109,13 +109,13 @@ body {
 
 
         <div class="form-group">
-            <input type="password" class="form-control" autocomplete="off" name="password" value="{{ old('password') }}" placeholder="Password">
+            <input type="password" class="form-control" autocomplete="off" name="password" value="{{ old('password') }}" placeholder="Lozinka">
             @if($errors->has('password'))
                 <p style="color:red">{{ $errors->first('password')}}</p>
             @endif
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
+            <input type="password" class="form-control" name="confirm_password" placeholder="Potvrdi lozinku">
             @if($errors->has('confirm_password'))
                 <p style="color:red">{{ $errors->first('confirm_password')}}</p>
             @endif
@@ -125,11 +125,11 @@ body {
 
 
 		<div class="form-group">
-            <a href="{{ url('products')}}" class="btn btn-success" style="color:red">Back</a>
+            <a href="{{ url('products')}}" class="btn btn-success" style="color:red">Nazad</a>
             @if(isset($user))
-                <button type="submit" class="btn btn-primary submit">Update</button>
+                <button type="submit" class="btn btn-primary submit">Ažuriraj</button>
             @else
-                <button type="submit" class="btn btn-primary submit">Add</button>
+                <button type="submit" class="btn btn-primary submit">Dodaj</button>
             @endif
         </div>
     </form>

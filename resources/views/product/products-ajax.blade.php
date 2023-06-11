@@ -1,14 +1,25 @@
+<style>
+    .card {
+        margin-bottom: 200px;
+        margin-left: calc(10%);
+    }
 
+    @media screen and (max-width: 480px) {
+        .row {
+            margin-left: 40px !important;
+        }
+    }
+</style>
 
-<div class="row" style="margin-left: -100px">
+<div class="row">
     @foreach($products as $row)
 
             <div class="card">
 
                 @if(\Helper::check_wishlist($row->id))
-                    <i class="fa fa-heart wishlist_remove" id="wishlist_remove" data-id="{{$row->id}}" style="color:rgb(240, 12, 12)" ></i>
+                  {{--  <i class="fa fa-heart wishlist_remove" id="wishlist_remove" data-id="{{$row->id}}" style="color:rgb(240, 12, 12)" ></i> --}}
                 @else
-                    <i class="fa fa-heart wishlist_add" id="wishlist_add" data-id="{{$row->id}}" style="color:grey" ></i>
+                  {{--  <i class="fa fa-heart wishlist_add" id="wishlist_add" data-id="{{$row->id}}" style="color:grey" ></i> --}}
                 @endif
                 <img class="card-img-top" src="{{ url('images/',$row->prod_img)}}">
 
@@ -16,10 +27,10 @@
                     <h5><b>{{ $row->name}}</b> </h5>
                     <p>{{ $row->description}}</p>
                     <div class="d-flex flex-row my-2">
-                        <div class="text-muted">₹ {{ $row->price }}</div>
+                        <div class="text-muted">KM {{ $row->price }}</div>
                     </div>
                     <div class="d-flex flex-row">
-                        <p>Sizes : </p>&nbsp;
+                        <p>Veličina: </p>&nbsp;
                         @php $sizes = explode(',',$row->sizes) @endphp
                         @foreach($sizes as $r)
                             <label class="radio"> <input type="radio" name="size" data-id="{{$row->id}}" id="size_value" size-id="{{ $r }}" value="{{ $r }}"> <span>{{ $r }}</span> </label>&nbsp;
@@ -28,32 +39,32 @@
 
                     </div>
                     <div class="d-flex flex-row">
-                        <p>Colors : </p>&nbsp;
+                        <p>Boja: </p>&nbsp;
                         @php $colors = DB::table('colors')->where('product_id',$row->id)->get(); @endphp
                         @foreach($colors as $r)
                            <label class="radio"> <input type="radio" name="color" id="color_value" data-id="{{$row->id}}"  value="{{ strtolower($r->color) }}"> <span>{{ ucfirst($r->color) }}</span> </label>&nbsp;
                         @endforeach
                     </div>
-                    <a href="{{ url('product-view',$row->id)}}"><button class="btn w-100 btn-primary">View</button></a>&nbsp;
-                    <button class="btn w-100 btn-success add_cart" id="add_cart" data-id="{{$row->id}}">Add to Cart</button>
+                    <a href="{{ url('product-view',$row->id)}}"><button class="btn w-100 btn-primary">Pregled</button></a>&nbsp;
+                    <button class="btn w-100 btn-success add_cart" id="add_cart" data-id="{{$row->id}}">Dodajte u košaricu</button>
 
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
                           <div class="modal-content">
 
                                 <div class="modal-header">
-                                <h4 class="modal-title">Success</h4>
+                                <h4 class="modal-title">Uspješno</h4>
 
                                 </div>
 
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    Product Successfully added into cart!
+                                    Proizvod je uspješno dodan u korpu!
                                 </div>
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zatvori</button>
                                 </div>
 
                             </div>
@@ -65,21 +76,21 @@
                             <div class="modal-content p-5">
 
                                 <div class="modal-body">
-                                    <h3 class="mb-5 title">Please Loign</h3>
+                                    <h3 class="mb-5 title">Molim ulogujte se</h3>
                                     <hr>
                                     <div class="form-group">
                                         <input type="text" id="email" class="form-control" placeholder="Email *" required >
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" id="password" class="form-control" placeholder="password *" required >
+                                        <input type="text" id="password" class="form-control" placeholder="lozinka *" required >
                                     </div>
                                     <hr>
                                     <div class="form-group d-flex justify-content-center">
                                         <button class="btn btn-danger" data-dismiss="modal">
-                                            Cancel
+                                            Poništi
                                         </button> &nbsp;
                                         <button id="login-submit" class="btn btn-success">
-                                            Login
+                                            Ulogujte se
                                         </button>
 
                                     </div>
@@ -109,7 +120,7 @@
             var size = $('input[name="size"][data-id='+product_id+']:checked').val();
 
             if(!size || !color) {
-                alert("Plese Select Size & Color");
+                alert("Molimo odaberite veličinu i boju");
                 return false;
             }
 
@@ -134,7 +145,7 @@
                                 $("#exampleModal").modal('hide');
                                 add_cart();
                             } else {
-                                alert("Login Failed");
+                                alert("Neuspješno");
                                 $("#exampleModal").modal('hide');
                             }
                         }
@@ -153,7 +164,7 @@
                             $("#myModal").modal("toggle");
                             config.cart_count();
                         } else {
-                            alert("Failed! Try Again.");
+                            alert("Greška");
                             config.cart_count();
                         }
                     }
@@ -162,7 +173,7 @@
 
         });
 
-        $('.wishlist_add').click(function() {
+        /* $('.wishlist_add').click(function() {
 
             var product_id = $(this).attr('data-id');
             var userid = "{{ session('userid') }}";
@@ -187,7 +198,7 @@
                                 $("#exampleModal").modal('hide');
                                 add_wishlist();
                             } else {
-                                alert("Login Failed");
+                                alert("Neuspješno");
                                 $("#exampleModal").modal('hide');
                             }
                         }
@@ -235,7 +246,7 @@
                     }
                 }
             });
-        });
+        }); */
 
 
 </script>

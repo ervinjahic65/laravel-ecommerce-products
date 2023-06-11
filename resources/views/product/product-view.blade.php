@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Product Details</title>
+    <title>Detalji o proizvodima</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -39,15 +39,15 @@
 						<h3 class="product-title">{{ $product->name }}</h3>
 
 						<p class="product-description">{{ $product->description}}</p>
-						<h4 class="price">current price: <span>Rs.{{$product->price }}</span></h4>
-						<h5 class="sizes">sizes:
+						<h4 class="price">Trenutna cijena <span>KM {{$product->price }}</span></h4>
+						<h5 class="sizes">Veličina:
 							@php $sizes = explode(',',$product->sizes) @endphp
                                 @foreach($sizes as $r)
 
                                     <span class="size" data-toggle="tooltip" title="small">{{ ucfirst($r) }}</span>
                                 @endforeach
 						</h5>
-						<h5 class="colors">colors:
+						<h5 class="colors">Boja:
 							{{-- @php $colors = explode(',',$product->colors) @endphp
                                 @foreach($colors as $r)
 
@@ -60,9 +60,15 @@
 							{{-- <span class="color blue"></span> --}}
 						</h5>
 						<div class="action">
-							<a href="{{url('products')}}" class="btn btn-primary" type="button">BACK</a>
-							<a href="{{ url('edit-product',$product->id) }}" class="btn btn-success" type="button">EDIT</a>
-							<a href="{{ url('delete-product',$product->id) }}" class="btn btn-danger" type="button" onclick="return confirm('Are you sure')">DELETE</a>
+							<a href="{{url('products')}}" class="btn btn-primary" type="button">NAZAD</a>
+							@php
+								$is_admin = session('is_admin');
+							@endphp
+
+							@if($is_admin == 1)
+								<a href="{{ url('edit-product',$product->id) }}" class="btn btn-success" type="button">UREDI</a>
+								<a href="{{ url('delete-product',$product->id) }}" class="btn btn-danger" type="button" onclick="return confirm('Da li ste sigurni')">OBRIŠI</a>
+							@endif
 							{{-- <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> --}}
 						</div>
 					</div>

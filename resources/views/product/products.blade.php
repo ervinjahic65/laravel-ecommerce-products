@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Products</title>
+    <title>Mobile Shop - Početna</title>
 
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -18,6 +18,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css">
 
     <style>
+
+        .hero-img-main {
+            width: 35%;
+            height: auto;
+        }
+
+        .hero-img {
+            width: 50px;
+        }
         #slider5a .slider-track-high, #slider5c .slider-track-high {
             background: green;
         }
@@ -29,111 +38,173 @@
         #slider5c .slider-selection {
             background: yellow;
         }
+
+        #min_value, #max_value {
+            padding-left: 40px;
+        }
+
+        @media screen and (max-width: 840px) {
+            .main-section {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #sidebar {
+                margin-left: calc(20%);
+            }
+
+            .max-min-values {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #min_value {
+                padding-left: 40px;
+                padding-right: 20px;
+            }
+
+            .pick-color {
+                margin-left: -20px !important;
+            }
+        }
+
+        @media screen and (max-width: 780px) {
+            .nav-item {
+                text-align: center;
+            }
+        }
         </style>
-
-
 
 </head>
 <body>
 
-
-    <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
-
+    <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
         <a class="navbar-brand ml-2 font-weight-bold" href="#">
-            <span id="burgundy"></span><span id="orange">Products</span>
+            <img class="hero-img" src="{{ url('images/mobile-shop.jpg') }}"/>
         </a>
-
-        <div class="collapse navbar-collapse" id="navbarColor">
-            <ul class="navbar-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                @if(session('userid'))
                 <li class="nav-item rounded bg-light search-nav-item">
-                    <input type="text" id="search" class="bg-light searchProd" placeholder="Search Products">
+                    <input type="text" id="search" class="bg-light searchProd form-control" placeholder="Pretraži proizvode ...">
                 </li>
-                {{-- <button class="bt btn-primary">Search</button> --}}
+                @endif
+                @if(session('userid'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span id="burgundy"></span><span id="blue">
+                                {{ strtoupper(session('username')) }}
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    @php
+                        $is_admin = session('is_admin');
+                    @endphp
+
+                    @if($is_admin == 1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('add-product')}}">
+                                <span id="burgundy"></span><span id="blue">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                        </li>
+                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/cart-products')}}">
+                            <span id="burgundy"></span><span id="blue">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                ( <span id="cart_count"> </span>  )
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('logout')}}">
+                            <span id="burgundy"></span><span id="blue">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('login')}}">
+                            <span id="burgundy"></span><span id="blue">Uloguj se</span>
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('signup')}}">
+                            <span id="burgundy"></span><span id="blue">Registruj se</span>
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
-
-
-        @if(session('userid'))
-
-            <a class="" href="">
-                <span id="burgundy"></span><span id="blue">{{ strtoupper(session('username')) }}</span>
-            </a>
-            &nbsp; | &nbsp;
-
-            <a class="" href="{{ url('add-product')}}">
-                <span id="burgundy"></span><span id="blue">ADD</span>
-            </a>
-            &nbsp; | &nbsp;
-            <a class="" href="{{ url('wishList')}}">
-                <span id="burgundy"></span><span id="blue">WHISH LIST</span>
-            </a>
-            &nbsp; | &nbsp;
-            <a class="" href="{{ url('/cart-products')}}">
-                <span id="burgundy"></span><span id="blue">CART ( <span id="cart_count"> </span>  )</span>
-            </a>
-            &nbsp; | &nbsp;
-            <a class="" href="{{ url('logout')}}">
-                <span id="burgundy"></span><span id="blue">LOGOUT</span>
-            </a>
-            &nbsp; | &nbsp;
-        @else
-            <a class="" href="{{ url('login')}}">
-                <span id="burgundy"></span><span id="blue">LOGIN</span>
-            </a>
-            &nbsp; | &nbsp;
-            <a class="" href="{{ url('signup')}}">
-                <span id="burgundy"></span><span id="blue">REGISTER</span>
-            </a>
-            &nbsp; | &nbsp;
-        @endif
-
     </nav>
 
-
-    <section id="sidebar">
-
-        <p> Home | <b>Products</b></p>
-
-        <div class="border-bottom pb-2 ml-2">
-            <h4 id="burgundy">Filters</h4>
-            {{-- <div class="filter">
-                <a href=""><button class="">Clear</button> </a>
-            </div> --}}
-        </div>
-
-        <div class="py-2 border-bottom ml-3">
-            <h5 id="burgundy">Price</h5>
-            <b id="min_value">Rs. {{ $price['min'] }}</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="{{ $price['min'] }}" data-slider-max="{{ $price['max'] }}" data-slider-step="5" data-slider-value="[{{ $price['min']}},{{ $price['max']}}]"/> <b id="max_value">Rs. {{$price['max']}}</b>
-        </div>
-
-        <div class="py-2 ml-3">
-            <h5 id="burgundy">Colors</h5>
-            @foreach($colors as  $r)
-                <div class="form-group"> <input class="color_check" type="checkbox" value="{{$r->color }}" id="25off"> <label for="25">{{ ucfirst($r->color) }}</label> </div>
-            @endforeach
-        </div>
-
-    </section>
-
-    @if(session('status'))
-    <strong style="color:green"><center>{{session('status')}}</center></strong>
+    @if(!session('userid'))
+    <div class="before-login" style="text-align: center;">
+        <img class="hero-img-main" src="{{ url('images/mobile-shop.jpg') }}"/>
+    </div>
     @endif
 
-    <section id="products">
+    @if(session('userid'))
+    <div class="main-container">
+        <section id="sidebar">
 
-        <div class="container">
-            <div class="d-flex flex-row">
-                <div class="ml-auto mr-lg-4">
+            <p> Početna | <b>Proizvodi</b></p>
+
+            <div class="border-bottom pb-2 ml-2">
+                <h4 id="burgundy">Filteri
+                    <i class="fa fa-filter" aria-hidden="true"></i>
+                </h4>
+                {{-- <div class="filter">
+                    <a href=""><button class="">Clear</button> </a>
+                </div> --}}
+            </div>
+
+            <div class="py-2 border-bottom ml-3 max-min-values">
+                <h5 id="burgundy">Po cijeni</h5>
+                <b id="min_value">KM: {{ $price['min'] }}</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="{{ $price['min'] }}" data-slider-max="{{ $price['max'] }}" data-slider-step="5" data-slider-value="[{{ $price['min']}},{{ $price['max']}}]"/> <b id="max_value">KM: {{$price['max']}}</b>
+            </div>
+
+            <div class="py-2 ml-3 pick-color">
+                <h5 id="burgundy">Po boji</h5>
+                @foreach($colors as  $r)
+                    <div class="form-group"> <input class="color_check" type="checkbox" value="{{$r->color }}" id="25off"> <label for="25">{{ ucfirst($r->color) }}</label> </div>
+                @endforeach
+            </div>
+
+            </section>
+
+            @if(session('status'))
+            <strong style="color:green"><center>{{session('status')}}</center></strong>
+            @endif
+
+            <section id="products">
+
+            <div class="container">
+                <div class="d-flex flex-row">
+                    <div class="ml-auto mr-lg-4">
+                    </div>
                 </div>
+
+                <div id="ajax_result">
+
+                </div>
+
             </div>
 
-            <div id="ajax_result">
-
-            </div>
-
-        </div>
-
-    </section>
+        </section>
+    </div>
+    @endif
+        
 
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -159,8 +230,8 @@
                 p = price.split(',');
                 var min = p[0];
                 var max = p[1];
-                $('#min_value').text("Rs: "+min);
-                $('#max_value').text("Rs: "+max);
+                $('#min_value').text("KM: "+min);
+                $('#max_value').text("KM: "+max);
                 //end
 
                 var dataString = 'key=' + key + '&colors=' + colors + '&price=' + price;
@@ -174,7 +245,7 @@
 
                             $("#ajax_result").html(data);
                         } else {
-                            $("#ajax_result").html("<p>No data Avaliable</p>");
+                            $("#ajax_result").html("<p>Nema podataka</p>");
                         }
                     }
                 });
