@@ -17,35 +17,6 @@ class UserController extends Controller
     //     $this->middleware('check');
     // }
 
-    /* public function checkWishList(Request $request){
-
-        $id = $request->id;
-        $userid = session('userid');
-        $result = DB::table('wishlist')->where('user_id',$userid)->where('product_id',$id)->first();
-
-        if(!empty($result)){
-            $res = "success";
-            return $res;
-        } else {
-            $res = "failed";
-            return $res;
-        }
-
-    } */
-    /* public function wishList()
-    {
-        $products = DB::table('wishlist as W')
-                    ->join('products as P','P.id','W.product_id')
-                    ->select('P.*')->get();
-        return view('product.wishlist-ajax',['products'=>$products]);
-    } */
-    /* public function getwishListItems()
-    {
-        $products = DB::table('wishlist as W')
-                    ->join('products as P','P.id','W.product_id')
-                    ->select('P.*')->get();
-        return view('product.wishlist-products',['products'=>$products]);
-    } */
     public function index()
     {
         $users = UserModel::getUsers();
@@ -123,38 +94,7 @@ class UserController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $this->validate($request,[
-            'name' => 'required',
-            'gender' => 'required',
-            'dob'=> 'required',
-            'role'=> 'required'
-        ]);
-        //$data = $request->except('_token','confirm_password');
-
-        // $data['name'] = $request['name'];
-        // $data['gender'] = $request['gender'];
-        // $data['dob'] = $request['dob'];
-        // $data['role'] = $request['role'];
-
-        $input = [
-            'name'=> $request->name,
-            'gender'=> $request->gender,
-            'dob'=> $request->dob,
-            'role'=> $request->role
-        ];
-        if(!empty($request->password)){
-            $input['password'] = \Hash::make($request->password);
-        }
-
-        $update = UserModel::updateUser($id,$input);
-
-        if(isset($update)){
-            return redirect('users')->with('status', 'Korisnik ažuriran!');
-        } else{
-            return redirect('/edit',$id)->with('status', 'Greška, pokušajte ponovo');;
-            //return "failed";
-        }
-
+        //
     }
 
     /**
