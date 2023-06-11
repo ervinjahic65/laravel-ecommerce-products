@@ -52,6 +52,7 @@ class UserController extends Controller
         ]);
         $data = $request->except('_token','confirm_password');
         $data['password'] = \Hash::make($request->password);
+        $data['is_admin'] = 0; // Set the default value for is_admin field
 
         $insertResult = DB::table('users')->insert($data);
 

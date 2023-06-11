@@ -61,9 +61,13 @@
 						</h5>
 						<div class="action">
 							<a href="{{url('products')}}" class="btn btn-primary" type="button">NAZAD</a>
-							@if(session('username') == 'Admin')
-							<a href="{{ url('edit-product',$product->id) }}" class="btn btn-success" type="button">UREDI</a>
-							<a href="{{ url('delete-product',$product->id) }}" class="btn btn-danger" type="button" onclick="return confirm('Da li ste sigurni')">OBRIŠI</a>
+							@php
+								$is_admin = session('is_admin');
+							@endphp
+
+							@if($is_admin == 1)
+								<a href="{{ url('edit-product',$product->id) }}" class="btn btn-success" type="button">UREDI</a>
+								<a href="{{ url('delete-product',$product->id) }}" class="btn btn-danger" type="button" onclick="return confirm('Da li ste sigurni')">OBRIŠI</a>
 							@endif
 							{{-- <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> --}}
 						</div>

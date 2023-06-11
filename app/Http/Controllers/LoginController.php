@@ -40,6 +40,12 @@ class LoginController extends Controller
             $request->session()->put('userid', $user->id);
             $request->session()->put('username', $user->name);
 
+            $is_admin = $user->is_admin; // Get the is_admin value from the user object
+            //dd($is_admin);
+            //die();
+
+            $request->session()->put('is_admin', $is_admin);
+
             $request->session()->flash('status', "Uspješno ste se ulogovali");
 
             if(session('product_id')){

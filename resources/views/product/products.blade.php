@@ -101,7 +101,12 @@
                             </span>
                         </a>
                     </li>
-                    @if(session('username') == 'Admin')
+
+                    @php
+                        $is_admin = session('is_admin');
+                    @endphp
+
+                    @if($is_admin == 1)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('add-product')}}">
                                 <span id="burgundy"></span><span id="blue">
