@@ -61,8 +61,10 @@
 						</h5>
 						<div class="action">
 							<a href="{{url('products')}}" class="btn btn-primary" type="button">BACK</a>
+							@if(session('username') == 'Admin')
 							<a href="{{ url('edit-product',$product->id) }}" class="btn btn-success" type="button">EDIT</a>
 							<a href="{{ url('delete-product',$product->id) }}" class="btn btn-danger" type="button" onclick="return confirm('Are you sure')">DELETE</a>
+							@endif
 							{{-- <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> --}}
 						</div>
 					</div>
