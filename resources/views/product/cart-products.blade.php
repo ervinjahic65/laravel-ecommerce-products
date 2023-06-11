@@ -64,7 +64,7 @@
 /* Apply clearfix in a few places */
 /* Apply dollar signs */
 .product .product-price:before, .product .product-line-price:before, .totals-value:before {
-  content: 'Rs.';
+  content: 'KM';
 }
 
 /* Body/Header stuff */
@@ -234,7 +234,7 @@ label {
   }
 
   .product .product-line-price:before {
-    content: 'Item Total: Rs.';
+    content: 'Item Total: KM.';
   }
 
   .totals .totals-item label {

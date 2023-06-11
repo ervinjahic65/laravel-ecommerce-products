@@ -39,7 +39,7 @@
 						<h3 class="product-title">{{ $product->name }}</h3>
 
 						<p class="product-description">{{ $product->description}}</p>
-						<h4 class="price">current price: <span>Rs.{{$product->price }}</span></h4>
+						<h4 class="price">current price: <span>KM {{$product->price }}</span></h4>
 						<h5 class="sizes">sizes:
 							@php $sizes = explode(',',$product->sizes) @endphp
                                 @foreach($sizes as $r)
