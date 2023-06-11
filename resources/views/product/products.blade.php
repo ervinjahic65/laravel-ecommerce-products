@@ -50,10 +50,7 @@
                 </li>
                 {{-- <button class="bt btn-primary">Search</button> --}}
             </ul>
-        </div>
-
-
-        @if(session('userid'))
+            @if(session('userid'))
 
             <a class="" href="">
                 <span id="burgundy"></span><span id="blue">
@@ -82,7 +79,7 @@
                 </span>
             </a>
             &nbsp;
-        @else
+            @else
             <a class="" href="{{ url('login')}}">
                 <span id="burgundy"></span><span id="blue">LOGIN</span>
             </a>
@@ -91,7 +88,8 @@
                 <span id="burgundy"></span><span id="blue">REGISTER</span>
             </a>
             &nbsp; | &nbsp;
-        @endif
+            @endif
+        </div>
 
     </nav>
 
