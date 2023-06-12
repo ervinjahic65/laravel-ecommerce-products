@@ -1,19 +1,40 @@
-Laravel 8 e-commerce page
+# Laravel web shop app with login and register.
 
-Features:<br>
+## About Laravel
 
-1) Add and Remove Products <br>
-2) Dynamic serach <br>
-3) Filters and Checkboxes <br>
-4) Add and remove to Cart <br>
-5) Wishlists <br>
-6) Uisng Ajax loading <br>
-7) User Login and logout <br>
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-![image](https://user-images.githubusercontent.com/74889807/136652464-caf45f87-dad7-49a4-ad00-e4029d6ddd65.png)
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-![image](https://user-images.githubusercontent.com/74889807/136652491-360f1f1b-fcbb-4864-a8d4-c24687f7b1d9.png)
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-![image](https://user-images.githubusercontent.com/74889807/136652503-5e3551de-db51-4250-88f2-42b1a67a2598.png)
+## Install and run the project
 
-![image](https://user-images.githubusercontent.com/74889807/136652512-585ec6eb-7234-4702-827a-13c531f03f4e.png)
+### Clone the project
+
+### Composer install
+
+`composer install`
+
+### Copy the .env file
+`cp .env.example .env`
+
+### Create a database and update the database credentials
+
+
+### Run the migrations
+`php artisan migrate`
+
+### Start the server
+
+`php artisan serve`
+
+The server is located at [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+
